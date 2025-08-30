@@ -18,7 +18,7 @@ return {
       providers = {
         claude = {
           endpoint = "https://api.anthropic.com",
-          api_key = "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",
+          api_key = "api_key",
           model = "claude-sonnet-4-20250514",
           timeout = 30000, -- Timeout in milliseconds
           extra_request_body = {
