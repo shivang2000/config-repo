@@ -6,3 +6,5 @@ vim.keymap.set("n", "<leader>fp", function()
   vim.fn.setreg("+", path) -- copy to system clipboard
   vim.notify("Copied path: " .. path)
 end, { desc = "Copy relative file path" })
+vim.keymap.set("i", "<A-S-o>", "<C-o>O", { desc = "Insert new line above" })
+vim.keymap.set("i", "<A-o>", "<C-o>o", { desc = "Insert new line below" })
