@@ -1,26 +1,25 @@
 return {
   {
     "supermaven-inc/supermaven-nvim",
-    enabled = false, -- Temporarily disabled
     event = "VeryLazy",
     config = function()
       require("supermaven-nvim").setup({
         keymaps = {
-          accept_suggestion = "<Tab>",
-          clear_suggestion = "<C-]>",
-          accept_word = "<C-j>",
+          accept_suggestion = "<M-l>", -- Alt+l for Supermaven accept (only when no other AI is showing)
+          clear_suggestion = "<M-c>", -- Alt+c for clear
+          accept_word = "<M-w>", -- Alt+w for accept word
         },
-        ignore_filetypes = { "cpp" }, -- or whatever filetypes you want to ignore
+        ignore_filetypes = { "cpp" },
         color = {
-          suggestion_color = "#ffffff",
+          suggestion_color = "#666666", -- Dimmed color to not conflict with Copilot
           cterm = 244,
         },
-        log_level = "info", -- set to "off" to disable logging completely
-        disable_inline_completion = false, -- disables inline completion for use with cmp
-        disable_keymaps = false, -- disables built in keymaps for more manual control
+        log_level = "info",
+        disable_inline_completion = true, -- Disable inline to prioritize Copilot, but keep in CMP
+        disable_keymaps = false,
         condition = function()
-          return false
-        end -- condition to check before starting supermaven
+          return true
+        end
       })
     end,
   },

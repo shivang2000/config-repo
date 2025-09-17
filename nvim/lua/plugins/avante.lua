@@ -15,6 +15,35 @@ return {
       instructions_file = "avante.md",
       -- for example
       provider = "claude",
+      auto_suggestions = false, -- Disable to reduce conflicts, focus on chat interface
+      behaviour = {
+        auto_focus = false, -- Don't auto focus to avoid interrupting workflow
+        auto_set_filetype = true,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = true,
+        minimize_diff = true,
+        auto_apply_suggestions = false, -- Require manual approval for suggestions
+      },
+      mappings = {
+        ask = "<leader>aa", -- Changed from default to avoid conflicts
+        edit = "<leader>ae",
+        refresh = "<leader>ar",
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          all_theirs = "ca",
+          both = "cb",
+          cursor = "cc",
+          next = "]x",
+          prev = "[x",
+        },
+        suggestion = {
+          accept = "<M-a>", -- Alt+a to accept Avante suggestions
+          next = "<M-n>",
+          prev = "<M-p>",
+          dismiss = "<M-d>",
+        },
+      },
       providers = {
         claude = {
           endpoint = "https://api.anthropic.com",
