@@ -1,6 +1,7 @@
 return {
   {
     "supermaven-inc/supermaven-nvim",
+    enabled = false, -- Temporarily disabled
     event = "VeryLazy",
     config = function()
       require("supermaven-nvim").setup({
