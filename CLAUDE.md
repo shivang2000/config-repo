@@ -53,10 +53,7 @@ This is a **personal configuration repository** containing dotfiles and settings
 Pre-configured sessions accessible via Alt+number:
 - **main** (Alt+1): Primary development session
 - **ide** (Alt+2): IDE/editor session
-- **jest-runner** (Alt+3): Test runner session
-- **code-runner** (Alt+4): Code execution session
-- **claude-terminal** (Alt+5): AI/Claude interaction session
-- **backend-ide** (Alt+6): Backend development session
+- **backend-ide** (Alt+3): Backend development session
 
 ### AI Provider Configuration
 - **Primary**: Claude-4 (claude-sonnet-4-20250514) via Avante.nvim
