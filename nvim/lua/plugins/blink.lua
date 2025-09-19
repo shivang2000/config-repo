@@ -29,6 +29,15 @@ return {
       },
     },
   },
+  {
+    "giuxtaposition/blink-cmp-copilot",
+  },
+  {
+    "jonahgoldwastaken/copilot-status.nvim",
+    dependencies = { "copilot.lua" }, -- or "zbirenbaum/copilot.lua"
+    lazy = true,
+    event = "BufReadPost",
+  },
   -- Enhanced Blink CMP configuration
   {
     "saghen/blink.cmp",
@@ -43,7 +52,7 @@ return {
       opts.sources.providers = opts.sources.providers or {}
       opts.sources.providers.copilot = {
         name = "copilot",
-        module = "blink.compat.source",
+        module = "blink-cmp-copilot",
         score_offset = 100,
         async = true,
       }
@@ -67,12 +76,42 @@ return {
         source_name = {
           text = function(ctx)
             local icons = {
-              copilot = "🤖",
+              copilot = "",
               supermaven = "🧠",
               lsp = "LSP",
               buffer = "BUF",
               path = "PATH",
               snippets = "SNIP",
+              Text = "󰉿",
+              Method = "󰊕",
+              Function = "󰊕",
+              Constructor = "󰒓",
+
+              Field = "󰜢",
+              Variable = "󰆦",
+              Property = "󰖷",
+
+              Class = "󱡠",
+              Interface = "󱡠",
+              Struct = "󱡠",
+              Module = "󰅩",
+
+              Unit = "󰪚",
+              Value = "󰦨",
+              Enum = "󰦨",
+              EnumMember = "󰦨",
+
+              Keyword = "󰻾",
+              Constant = "󰏿",
+
+              Snippet = "󱄽",
+              Color = "󰏘",
+              File = "󰈔",
+              Reference = "󰬲",
+              Folder = "󰉋",
+              Event = "󱐋",
+              Operator = "󰪚",
+              TypeParameter = "󰬛",
             }
             return icons[ctx.source_name] or ctx.source_name
           end,

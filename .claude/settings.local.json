@@ -4,7 +4,9 @@
       "Bash(find:*)",
       "Bash(nvim:*)",
       "Bash(brew install:*)",
-      "Bash(tree-sitter:*)"
+      "Bash(tree-sitter:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
