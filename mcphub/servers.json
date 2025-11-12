@@ -1,1 +1,46 @@
-{"mcpServers":{}}
+{
+  "mcpServers": {
+    "browser_tools": {
+      "args": [
+        "@agentdeskai/browser-tools-mcp@latest"
+      ],
+      "command": "npx"
+    },
+    "git": {
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "${REPOSITORY_PATH}"
+      ],
+      "command": "uvx"
+    },
+    "github": {
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "gitlab": {
+      "args": [
+        "mcp-server-gitlab"
+      ],
+      "command": "uvx",
+      "env": {
+        "GITLAB_API_URL": "${GITLAB_API_URL}",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "slack": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-slack"
+      ],
+      "command": "npx",
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_CHANNEL_IDS": "${SLACK_CHANNEL_IDS}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      }
+    }
+  }
+}

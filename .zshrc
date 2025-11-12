@@ -221,3 +221,6 @@ my-exit-widget() { exit; }
 bindkey "^D" my-exit-widget
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/sdkman-java.jdk/Contents/Home"
+
+# Added by CodeRabbit CLI installer
+export PATH="/Users/shivang/.local/bin:$PATH"

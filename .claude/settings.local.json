@@ -7,7 +7,8 @@
       "Bash(tree-sitter:*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Read(//Users/shivang/.tmux/plugins/**)"
     ],
     "deny": [],
     "ask": []
