@@ -6,7 +6,7 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
-        debounce = 25, -- Very fast response for immediate suggestions
+        debounce = 75, -- Reduced from 25ms for better performance
         keymap = {
           accept = "<M-Tab>",
           accept_word = "<M-Right>",
@@ -18,7 +18,7 @@ return {
       },
       panel = {
         enabled = true,
-        auto_refresh = true,
+        auto_refresh = false, -- Disabled for performance
         keymap = {
           jump_prev = "[[",
           jump_next = "]]",
@@ -34,20 +34,20 @@ return {
   },
   {
     "jonahgoldwastaken/copilot-status.nvim",
-    dependencies = { "copilot.lua" }, -- or "zbirenbaum/copilot.lua"
+    dependencies = { "copilot.lua" },
     lazy = true,
     event = "BufReadPost",
   },
-  -- Enhanced Blink CMP configuration
+  -- Optimized Blink CMP configuration - Copilot only
   {
     "saghen/blink.cmp",
     dependencies = {
       "saghen/blink.compat",
     },
     opts = function(_, opts)
-      -- Extend the default LazyVim config
+      -- Simplified sources - only Copilot + essentials
       opts.sources = opts.sources or {}
-      opts.sources.default = { "copilot", "lsp", "path", "snippets", "buffer", "supermaven", "codeium" }
+      opts.sources.default = { "copilot", "lsp", "path", "snippets", "buffer" }
 
       -- Context-aware source selection for different filetypes (Copilot always first)
       opts.sources.per_filetype = {
@@ -61,82 +61,57 @@ return {
       }
 
       opts.sources.providers = opts.sources.providers or {}
-      -- AI providers with optimized scoring and limits
+      -- Copilot configuration
       opts.sources.providers.copilot = {
         name = "copilot",
         module = "blink-cmp-copilot",
-        score_offset = 2000, -- Maximum priority - always first
+        score_offset = 2000,
         async = true,
         max_items = 5, -- More Copilot suggestions
         min_keyword_length = 1, -- Trigger after just 1 character
         enabled = true,
       }
-      opts.sources.providers.supermaven = {
-        name = "supermaven",
-        module = "blink.compat.source",
-        score_offset = 900, -- High priority, good for performance-critical code
-        async = true,
-        max_items = 2,
-        min_keyword_length = 2,
-      }
-      opts.sources.providers.codeium = {
-        name = "codeium",
-        module = "blink.compat.source",
-        score_offset = 800, -- Good for web development
-        async = true,
-        max_items = 2,
-        min_keyword_length = 3,
-      }
 
-      -- Enhanced LSP configuration
+      -- LSP configuration
       opts.sources.providers.lsp = {
         name = "lsp",
-        score_offset = 700, -- Lower than AI but still important
-        max_items = 10,
+        score_offset = 1000,
+        max_items = 8, -- Reduced from 10
       }
 
-      -- Enhanced completion menu with performance optimizations
+      -- Buffer configuration
+      opts.sources.providers.buffer = {
+        max_items = 5,
+        min_keyword_length = 3, -- Only trigger after 3 chars
+      }
+
+      -- Optimized completion menu with better performance
       opts.completion = opts.completion or {}
       opts.completion.trigger = {
-        prefetch_on_insert = true,
-        show_on_insert_on_trigger_character = true, -- Show immediately on trigger chars
-        show_on_keyword = true, -- Show on any keyword
+        prefetch_on_insert = false, -- Disabled for performance
+        show_on_insert_on_trigger_character = true,
+        show_on_keyword = true,
         show_on_trigger_character = true,
-        show_on_x_blocked_trigger_characters = {}, -- Don't block on any characters
-        -- Immediate show when typing
-        immediate_show = true,
-        show_on_accept_on_trigger_character = true,
+        show_on_x_blocked_trigger_characters = {},
       }
       opts.completion.accept = {
         auto_brackets = {
           enabled = true,
           default_brackets = { "(", ")" },
-          override_brackets_for_filetypes = {
-            lua = { "(", ")" },
-            python = { "(", ")" },
-          },
         },
       }
       opts.completion.menu = opts.completion.menu or {}
-      opts.completion.menu.max_height = 12
-      opts.completion.menu.border = "none" -- VSCode-like clean look
+      opts.completion.menu.max_height = 10 -- Reduced from 12
+      opts.completion.menu.border = "none"
       opts.completion.menu.scrollbar = true
-      opts.completion.menu.direction_priority = { "s", "n" } -- Prefer below cursor
+      opts.completion.menu.direction_priority = { "s", "n" }
+      opts.completion.menu.winblend = 10
 
-      -- Position menu to the right to show ghost text
-      opts.completion.menu.winblend = 10 -- Slight transparency like VSCode
-      opts.completion.menu.winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None"
-
-      -- VSCode-style layout with proper spacing and positioning
       opts.completion.menu.draw = opts.completion.menu.draw or {}
       opts.completion.menu.draw.padding = 1
-      opts.completion.menu.draw.gap = 2
-
-      -- Position menu strategically to show ghost text
+      opts.completion.menu.draw.gap = 1 -- Reduced from 2
       opts.completion.menu.auto_show = true
-      opts.completion.menu.col_offset = 0 -- Move menu to show ghost text better
 
-      -- Synchronize menu with ghost text suggestions
       opts.completion.ghost_text = {
         enabled = true,
       }
@@ -151,8 +126,6 @@ return {
           text = function(ctx)
             local icons = {
               copilot = "",
-              supermaven = "🧠",
-              codeium = "",
               lsp = "LSP",
               buffer = "BUF",
               path = "PATH",
@@ -161,24 +134,19 @@ return {
               Method = "󰊕",
               Function = "󰊕",
               Constructor = "󰒓",
-
               Field = "󰜢",
               Variable = "󰆦",
               Property = "󰖷",
-
               Class = "󱡠",
               Interface = "󱡠",
               Struct = "󱡠",
               Module = "󰅩",
-
               Unit = "󰪚",
               Value = "󰦨",
               Enum = "󰦨",
               EnumMember = "󰦨",
-
               Keyword = "󰻾",
               Constant = "󰏿",
-
               Snippet = "󱄽",
               Color = "󰏘",
               File = "󰈔",
