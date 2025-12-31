@@ -7,7 +7,7 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/shivang/Library/Python/3.12/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/shivang/Library/Python/3.12/bin:/Users/shivang/nvim-macos-arm64/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -224,3 +224,11 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/sdkman-java.jdk/Contents/Hom
 
 # Added by CodeRabbit CLI installer
 export PATH="/Users/shivang/.local/bin:$PATH"
+
+# bun completions
+[ -s "/Users/shivang/.bun/_bun" ] && source "/Users/shivang/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
