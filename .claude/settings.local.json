@@ -8,7 +8,9 @@
       "WebSearch",
       "WebFetch(domain:github.com)",
       "Bash(git add:*)",
-      "Read(//Users/shivang/.tmux/plugins/**)"
+      "Read(//Users/shivang/.tmux/plugins/**)",
+      "Bash(brew list:*)",
+      "Bash(gs:*)"
     ],
     "deny": [],
     "ask": []

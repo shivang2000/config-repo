@@ -45,18 +45,22 @@ return {
       "saghen/blink.compat",
     },
     opts = function(_, opts)
+      -- Use Rust implementation for better fuzzy matching performance
+      opts.fuzzy = opts.fuzzy or {}
+      opts.fuzzy.implementation = "prefer_rust"
+
       -- Simplified sources - only Copilot + essentials
       opts.sources = opts.sources or {}
       opts.sources.default = { "copilot", "lsp", "path", "snippets", "buffer" }
 
       -- Context-aware source selection for different filetypes (Copilot always first)
       opts.sources.per_filetype = {
-        python = { "copilot", "lsp", "supermaven", "snippets", "buffer" },
-        javascript = { "copilot", "lsp", "codeium", "snippets", "buffer" },
-        typescript = { "copilot", "lsp", "codeium", "snippets", "buffer" },
+        python = { "copilot", "lsp", "snippets", "buffer" },
+        javascript = { "copilot", "lsp", "snippets", "buffer" },
+        typescript = { "copilot", "lsp", "snippets", "buffer" },
         lua = { "copilot", "lsp", "snippets", "buffer" },
-        rust = { "copilot", "lsp", "supermaven", "snippets", "buffer" },
-        go = { "copilot", "lsp", "supermaven", "snippets", "buffer" },
+        rust = { "copilot", "lsp", "snippets", "buffer" },
+        go = { "copilot", "lsp", "snippets", "buffer" },
         markdown = { "copilot", "buffer", "path", "snippets" },
       }
 
